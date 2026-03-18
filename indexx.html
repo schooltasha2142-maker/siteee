@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMT English Prep - Підготовка до НМТ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --card-dark: rgba(30, 41, 59, 0.8);
+            --card-light: rgba(255, 255, 255, 0.9);
+            --text-dark: #e2e8f0;
+            --text-light: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-dark);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        body.light-mode {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.light-mode header {
+            background: rgba(248, 250, 252, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 73px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 999;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Main Container */
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.light-mode .hero h1 {
+            background: linear-gradient(135deg, #1e293b, #475569);
+            -webkit-background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-dark);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        body.light-mode .stat-card {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .topic-card {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-mode .topic-card {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .topic-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topic-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-desc {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .topic-progress {
+            margin-top: 1rem;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        body.light-mode .topic-progress {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .topic-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--primary));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .quiz-container {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: monospace;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        body.light-mode .option {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .option.wrong {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .option-letter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Flashcards */
+        .flashcard-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem auto;
+            height: 300px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-mode .flashcard-face {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .flashcard-word {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-phonetic {
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Irregular Verbs Table */
+        .verbs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--card-dark);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        body.light-mode .verbs-table {
+            background: var(--card-light);
+        }
+
+        .verbs-table th,
+        .verbs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .verbs-table th,
+        body.light-mode .verbs-table td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .verbs-table th {
+            background: rgba(99, 102, 241, 0.2);
+            font-weight: 600;
+        }
+
+        .verbs-table tr:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .play-btn {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Writing Section */
+        .writing-template {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .writing-template {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .template-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .template-type {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .template-structure {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+
+        body.light-mode .template-structure {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .phrase-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .phrase-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: inherit;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .btn-secondary {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.3s ease;
+        }
+
+        body.light-mode .modal-content {
+            background: var(--card-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                gap: 0.5rem;
+            }
+            
+            .nav-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall 3s linear forwards;
+            z-index: 3000;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Grammar Rule Box */
+        .grammar-rule {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+
+        .rule-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .rule-example {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        body.light-mode .rule-example {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .correct-example {
+            color: var(--success);
+        }
+
+        .wrong-example {
+            color: var(--danger);
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            NMT English Prep
+        </div>
+        <div class="nav-controls">
+            <button class="btn-icon" onclick="toggleTheme()" title="Змінити тему">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="btn-icon" onclick="resetProgress()" title="Скинути прогрес">
+                <i class="fas fa-redo"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="main-progress"></div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Підготовка до НМТ 2025</h1>
+            <p>Інтерактивна платформа для вивчення англійської мови. Опануй всі теми та отримай максимальний бал!</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-progress">0%</div>
+                    <div>Загальний прогрес</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completed-topics">0</div>
+                    <div>Вивчено тем</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="quiz-score">0</div>
+                    <div>Тестів пройдено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="study-streak">1</div>
+                    <div>Днів поспіль</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('grammar')">
+                <i class="fas fa-spell-check"></i> Граматика
+            </button>
+            <button class="nav-tab" onclick="showSection('vocabulary')">
+                <i class="fas fa-book"></i> Лексика
+            </button>
+            <button class="nav-tab" onclick="showSection('reading')">
+                <i class="fas fa-book-open"></i> Читання
+            </button>
+            <button class="nav-tab" onclick="showSection('writing')">
+                <i class="fas fa-pen"></i> Письмо
+            </button>
+            <button class="nav-tab" onclick="showSection('listening')">
+                <i class="fas fa-headphones"></i> Аудіювання
+            </button>
+            <button class="nav-tab" onclick="showSection('practice')">
+                <i class="fas fa-dumbbell"></i> Практика
+            </button>
+        </nav>
+
+        <!-- Grammar Section -->
+        <section id="grammar" class="content-section active">
+            <div class="cards-grid" id="grammar-topics"></div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocabulary" class="content-section">
+            <div class="cards-grid" id="vocabulary-topics"></div>
+        </section>
+
+        <!-- Reading Section -->
+        <section id="reading" class="content-section">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2><i class="fas fa-book-open"></i> Reading Comprehension</h2>
+                    <div class="timer" id="reading-timer">20:00</div>
+                </div>
+                <div id="reading-content"></div>
+            </div>
+        </section>
+
+        <!-- Writing Section -->
+        <section id="writing" class="content-section">
+            <div id="writing-content"></div>
+        </section>
+
+        <!-- Listening Section -->
+        <section id="listening" class="content-section">
+            <div class="quiz-container">
+                <h2><i class="fas fa-headphones"></i> Listening Practice</h2>
+                <div id="listening-content"></div>
+            </div>
+        </section>
+
+        <!-- Practice Section -->
+        <section id="practice" class="content-section">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2><i class="fas fa-dumbbell"></i> Інтенсивна практика</h2>
+                    <div class="timer" id="practice-timer">45:00</div>
+                </div>
+                <div id="practice-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Назва теми</h2>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const grammarTopics = [
+            {
+                id: 'tenses',
+                title: 'Часи дієслова (Tenses)',
+                icon: 'fa-clock',
+                desc: 'Present, Past, Future Simple, Continuous, Perfect',
+                subtopics: [
+                    {
+                        title: 'Present Simple vs Present Continuous',
+                        content: `
+                            <div class="grammar-rule">
+                                <div class="rule-title">Present Simple</div>
+                                <p>Для регулярних дій, фактів, розкладів</p>
+                                <div class="rule-example">
+                                    <span class="correct-example">I play football every Sunday.</span><br>
+                                    <span class="correct-example">She works as a teacher.</span>
+                                </div>
+                            </div>
+                            <div class="grammar-rule">
+                                <div class="rule-title">Present Continuous</div>
+                                <p>Для дій, що відбуваються зараз, тимчасових ситуацій</p>
+                                <div class="rule-example">
+                                    <span class="correct-example">I am playing football now.</span><br>
+                                    <span class="correct-example">She is working from home this week.</span>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: 'Past Simple vs Past Continuous',
+                        content: `
+                            <div class="grammar-rule">
+                                <div class="rule-title">Past Simple</div>
+                                <p>Завершені дії в минулому, послідовні дії</p>
+                                <div class="rule-example">
+                                    <span class="correct-example">I watched a movie yesterday.</span><br>
+                                    <span class="correct-example">She came home, turned on the TV and fell asleep.</span>
+                                </div>
+                            </div>
+                            <div class="grammar-rule">
+                                <div class="rule-title">Past Continuous</div>
+                                <p>Тривалі дії в минулому, дія перервана іншою</p>
+                                <div class="rule-example">
+                                    <span class="correct-example">I was watching TV when she called.</span><br>
+                                    <span class="correct-example">While I was cooking, he was reading.</span>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            {
+                id: 'passive',
+                title: 'Passive Voice',
+                icon: 'fa-exchange-alt',
+                desc: 'Passive constructions in all tenses',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">Формула: to be + V3 (past participle)</div>
+                        <p>Present Simple Passive: am/is/are + V3<br>
+                        Past Simple Passive: was/were + V3<br>
+                        Future Simple Passive: will be + V3</p>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Приклади:</div>
+                        <div class="rule-example">
+                            <span class="wrong-example">They built this house in 1990.</span><br>
+                            <span class="correct-example">This house was built in 1990.</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'conditionals',
+                title: 'Conditionals (Умовні речення)',
+                icon: 'fa-code-branch',
+                desc: '0, 1, 2, 3 типи та Mixed Conditionals',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">Zero Conditional (Наукові факти)</div>
+                        <p>If + Present Simple, Present Simple</p>
+                        <div class="rule-example">
+                            <span class="correct-example">If you heat water to 100°C, it boils.</span>
+                        </div>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">First Conditional (Реальна умова)</div>
+                        <p>If + Present Simple, will + V1</p>
+                        <div class="rule-example">
+                            <span class="correct-example">If it rains, I will stay at home.</span>
+                        </div>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Second Conditional (Нереальна умова)</div>
+                        <p>If + Past Simple, would + V1</p>
+                        <div class="rule-example">
+                            <span class="correct-example">If I were rich, I would buy a yacht.</span>
+                        </div>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Third Conditional (Умова в минулому)</div>
+                        <p>If + Past Perfect, would have + V3</p>
+                        <div class="rule-example">
+                            <span class="correct-example">If I had studied harder, I would have passed the exam.</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'reported',
+                title: 'Reported Speech',
+                icon: 'fa-comment-dots',
+                desc: 'Не пряма мова, зміни часів та місцезайменників',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">Зміни часів (Backshift)</div>
+                        <p>Present Simple → Past Simple<br>
+                        Present Continuous → Past Continuous<br>
+                        Past Simple → Past Perfect<br>
+                        Will → Would</p>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Приклад:</div>
+                        <div class="rule-example">
+                            Direct: "I am tired," she said.<br>
+                            Reported: She said (that) she was tired.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'articles',
+                title: 'Articles (Артиклі)',
+                icon: 'fa-font',
+                desc: 'a/an, the, zero article',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">a/an - невизначений артикль</div>
+                        <p>Вживається з одниною злічуваних іменників, коли говоримо вперше</p>
+                        <div class="rule-example">
+                            <span class="correct-example">I saw a cat in the garden.</span>
+                        </div>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">the - визначений артикль</div>
+                        <p>Коли предмет відомий обом сторонам, єдиний у своєму роді, з прикметниками вищого ступеня</p>
+                        <div class="rule-example">
+                            <span class="correct-example">The sun is shining.</span><br>
+                            <span class="correct-example">He is the best student.</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'gerund',
+                title: 'Gerund vs Infinitive',
+                icon: 'fa-running',
+                desc: 'Верунд та інфінітив після різних дієслів',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">Gerund (-ing) після:</div>
+                        <p>enjoy, mind, suggest, avoid, finish, consider, admit, deny, imagine, miss, postpone, practice, risk, can't help, be worth, be used to, look forward to</p>
+                        <div class="rule-example">
+                            <span class="correct-example">I enjoy swimming.</span><br>
+                            <span class="correct-example">I look forward to meeting you.</span>
+                        </div>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Infinitive (to + V) після:</div>
+                        <p>want, would like, decide, hope, expect, promise, refuse, offer, agree, learn, manage, afford, happen, seem, appear, tend</p>
+                        <div class="rule-example">
+                            <span class="correct-example">I want to learn English.</span><br>
+                            <span class="correct-example">She promised to help me.</span>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        const vocabularyTopics = [
+            {
+                id: 'phrasal',
+                title: 'Phrasal Verbs',
+                icon: 'fa-layer-group',
+                desc: 'Віддієслівні прислівники та прийменники',
+                type: 'flashcards',
+                words: [
+                    { word: 'give up', meaning: 'здаватися, кидати', example: 'Don\'t give up!' },
+                    { word: 'look after', meaning: 'доглядати', example: 'Look after your sister.' },
+                    { word: 'turn on', meaning: 'вмикати', example: 'Turn on the light.' },
+                    { word: 'put off', meaning: 'відкладати', example: 'Don\'t put off your homework.' },
+                    { word: 'take off', meaning: 'злітати, знімати (одяг)', example: 'The plane took off.' },
+                    { word: 'get on', meaning: 'сідати (на транспорт)', example: 'Get on the bus.' }
+                ]
+            },
+            {
+                id: 'linking',
+                title: 'Linking Words',
+                icon: 'fa-link',
+                desc: 'Сполучні слова для зв\'язку речень',
+                content: `
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <strong>Addition:</strong> furthermore, moreover, in addition, besides, also
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Contrast:</strong> however, nevertheless, although, even though, despite, in spite of, on the other hand
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Cause:</strong> because, since, as, due to, owing to, on account of
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Effect:</strong> therefore, thus, consequently, as a result, so
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Example:</strong> for example, for instance, such as, like
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Conclusion:</strong> in conclusion, to sum up, all in all, finally
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'wordformation',
+                title: 'Word Formation',
+                icon: 'fa-puzzle-piece',
+                desc: 'Суфікси та префікси для зміни частин мови',
+                content: `
+                    <div class="grammar-rule">
+                        <div class="rule-title">Noun suffixes:</div>
+                        <p>-tion (inform → information)<br>
+                        -ment (develop → development)<br>
+                        -ness (happy → happiness)<br>
+                        -er/or (teach → teacher, act → actor)</p>
+                    </div>
+                    <div class="grammar-rule">
+                        <div class="rule-title">Adjective suffixes:</div>
+                        <p>-ful (beauty → beautiful)<br>
+                        -less (care → careless)<br>
+                        -able/ible (comfort → comfortable)<br>
+                        -ous (danger → dangerous)</p>
+                    </div>
+                `
+            },
+            {
+                id: 'irregular',
+                title: 'Irregular Verbs',
+                icon: 'fa-list-ol',
+                desc: 'Неправильні дієслова з аудіо',
+                type: 'table',
+                verbs: [
+                    { base: 'be', past: 'was/were', participle: 'been', sound: 'bi' },
+                    { base: 'become', past: 'became', participle: 'become', sound: 'bɪˈkʌm' },
+                    { base: 'begin', past: 'began', participle: 'begun', sound: 'bɪˈɡɪn' },
+                    { base: 'break', past: 'broke', participle: 'broken', sound: 'breɪk' },
+                    { base: 'bring', past: 'brought', participle: 'brought', sound: 'brɪŋ' },
+                    { base: 'build', past: 'built', participle: 'built', sound: 'bɪld' },
+                    { base: 'buy', past: 'bought', participle: 'bought', sound: 'baɪ' },
+                    { base: 'catch', past: 'caught', participle: 'caught', sound: 'kætʃ' },
+                    { base: 'choose', past: 'chose', participle: 'chosen', sound: 'tʃuːz' },
+                    { base: 'come', past: 'came', participle: 'come', sound: 'kʌm' }
+                ]
+            },
+            {
+                id: 'collocations',
+                title: 'Collocations',
+                icon: 'fa-object-group',
+                desc: 'Стійкі словосполучення',
+                content: `
+                    <div class="phrase-list">
+                        <div class="phrase-item">make a decision</div>
+                        <div class="phrase-item">do homework</div>
+                        <div class="phrase-item">take a photo</div>
+                        <div class="phrase-item">have breakfast</div>
+                        <div class="phrase-item">get angry</div>
+                        <div class="phrase-item">keep calm</div>
+                    </div>
+                `
+            },
+            {
+                id: 'idioms',
+                title: 'Idioms',
+                icon: 'fa-lightbulb',
+                desc: 'Ідіоми та вирази',
+                content: `
+                    <div class="phrase-list">
+                        <div class="phrase-item">
+                            <strong>It's raining cats and dogs</strong> - Ллє як з відра
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Break a leg</strong> - Ни пуху ні пера (перед виступом)
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Once in a blue moon</strong> - Дуже рідко
+                        </div>
+                        <div class="phrase-item">
+                            <strong>Bite the bullet</strong> - Стиснути зуби
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        const readingTexts = [
+            {
+                title: 'The History of the Internet',
+                text: `The Internet has become an essential part of our daily lives, but its origins date back to the 1960s. The first version of the Internet, called ARPANET, was created by the US Department of Defense in 1969. It connected four university computers and was designed to maintain communication during a potential nuclear attack.
+
+By the 1980s, the network had expanded to include more institutions, and the term "Internet" was adopted. The invention of the World Wide Web by Tim Berners-Lee in 1989 revolutionized how we use the Internet. He created a system that allowed information to be shared through websites and hyperlinks.
+
+Today, over 5 billion people use the Internet worldwide. It has transformed how we communicate, work, shop, and learn. However, concerns about privacy, cybersecurity, and digital addiction have emerged as significant challenges in our connected world.`,
+                questions: [
+                    {
+                        question: 'When was ARPANET created?',
+                        options: ['1959', '1969', '1979', '1989'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Who invented the World Wide Web?',
+                        options: ['Bill Gates', 'Steve Jobs', 'Tim Berners-Lee', 'Mark Zuckerberg'],
+                        correct: 2
+                    },
+                    {
+                        question: 'What was the original purpose of ARPANET?',
+                        options: ['For online shopping', 'For social media', 'For military communication', 'For entertainment'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                title: 'Benefits of Learning Languages',
+                text: `Learning a foreign language offers numerous cognitive and professional benefits. Research shows that bilingual individuals have better memory, problem-solving skills, and multitasking abilities. The brain of a language learner literally changes structure, becoming more efficient and adaptable.
+
+Professionally, knowing multiple languages opens doors to international career opportunities. In an increasingly globalized world, employers value employees who can communicate with clients and partners from different countries. Language skills often lead to higher salaries and faster career advancement.
+
+Moreover, learning a language provides insights into different cultures and perspectives. It fosters empathy and understanding between people from diverse backgrounds. Travel becomes more enriching when you can communicate with locals in their native tongue.
+
+It's never too late to start learning. While children may learn languages more naturally, adults have the advantage of better focus and learning strategies. With dedication and consistent practice, anyone can achieve fluency.`,
+                questions: [
+                    {
+                        question: 'What cognitive benefit is NOT mentioned in the text?',
+                        options: ['Better memory', 'Better problem-solving', 'Better eyesight', 'Better multitasking'],
+                        correct: 2
+                    },
+                    {
+                        question: 'According to the text, why do employers value multilingual employees?',
+                        options: ['They work longer hours', 'They can communicate internationally', 'They are cheaper to hire', 'They are younger'],
+                        correct: 1
+                    },
+                    {
+                        question: 'What advantage do adults have when learning languages?',
+                        options: ['More natural ability', 'Better focus and strategies', 'More free time', 'Better hearing'],
+                        correct: 1
+                    }
+                ]
+            }
+        ];
+
+        const writingTemplates = [
+            {
+                type: 'Essay (For and Against)',
+                structure: `Introduction:
+- Paraphrase the topic
+- State that there are different opinions
+
+Main Body (Paragraph 2 - Arguments FOR):
+- Topic sentence
+- 2-3 arguments with examples
+
+Main Body (Paragraph 3 - Arguments AGAINST):
+- Topic sentence
+- 2-3 arguments with examples
+
+Conclusion:
+- Summarize main points
+- Give your opinion (optional)`,
+                phrases: ['On the one hand...', 'On the other hand...', 'However...', 'In conclusion...', 'To sum up...']
+            },
+            {
+                type: 'Formal Letter',
+                structure: `Your address (top right)
+Date
+
+Recipient's address
+
+Dear Sir/Madam, (or name if known)
+
+Introduction: Reason for writing
+Main Body: Details and requests
+Conclusion: Expectation of reply
+
+Yours faithfully, (if Dear Sir/Madam)
+Yours sincerely, (if named)
+Your name`,
+                phrases: ['I am writing to...', 'I would like to inquire about...', 'I look forward to hearing from you...']
+            },
+            {
+                type: 'Informal Letter/Email',
+                structure: `Hi/Hello [Name],
+
+Introduction: Thanks for letter, apology for delay
+Main Body: News, questions, suggestions
+Conclusion: Future plans, wishes
+
+Best wishes/Regards/Love,
+[Your name]`,
+                phrases: ['Thanks for your letter...', 'It was great to hear from you...', 'Write soon...', 'Take care...']
+            },
+            {
+                type: 'Article',
+                structure: `Title: Catchy and relevant
+
+Introduction:
+- Hook the reader
+- Brief overview of topic
+
+Main Body:
+- Subheadings for different aspects
+- Facts, opinions, examples
+- Direct address to reader (you)
+
+Conclusion:
+- Summary or call to action`,
+                phrases: ['Have you ever...?', 'Imagine...', 'These days...', 'Why not...?']
+            }
+        ];
+
+        // State
+        let progress = JSON.parse(localStorage.getItem('nmt_progress')) || {};
+        let currentQuiz = null;
+        let currentQuestion = 0;
+        let score = 0;
+        let timer = null;
+        let currentFlashcard = 0;
+        let currentFlashcardSet = null;
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            renderGrammarTopics();
+            renderVocabularyTopics();
+            renderReadingSection();
+            renderWritingSection();
+            updateProgress();
+            checkStreak();
+        });
+
+        // Theme
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.getElementById('theme-icon');
+            icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        function loadTheme() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-icon').className = 'fas fa-sun';
+            }
+        }
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            event.target.closest('.nav-tab').classList.add('active');
+        }
+
+        // Render Functions
+        function renderGrammarTopics() {
+            const container = document.getElementById('grammar-topics');
+            container.innerHTML = grammarTopics.map(topic => `
+                <div class="topic-card" onclick="openGrammarTopic('${topic.id}')">
+                    <div class="topic-icon"><i class="fas ${topic.icon}"></i></div>
+                    <div class="topic-title">${topic.title}</div>
+                    <div class="topic-desc">${topic.desc}</div>
+                    <div class="topic-progress">
+                        <div class="topic-progress-bar" style="width: ${progress[topic.id] || 0}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderVocabularyTopics() {
+            const container = document.getElementById('vocabulary-topics');
+            container.innerHTML = vocabularyTopics.map(topic => `
+                <div class="topic-card" onclick="openVocabTopic('${topic.id}')">
+                    <div class="topic-icon"><i class="fas ${topic.icon}"></i></div>
+                    <div class="topic-title">${topic.title}</div>
+                    <div class="topic-desc">${topic.desc}</div>
+                    <div class="topic-progress">
+                        <div class="topic-progress-bar" style="width: ${progress[topic.id] || 0}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openGrammarTopic(id) {
+            const topic = grammarTopics.find(t => t.id === id);
+            if (!topic) return;
+
+            document.getElementById('modal-title').textContent = topic.title;
+            
+            let content = '';
+            if (topic.subtopics) {
+                content = topic.subtopics.map((sub, idx) => `
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">${sub.title}</h3>
+                        ${sub.content}
+                    </div>
+                `).join('');
+            } else {
+                content = topic.content || '<p>Вміст теми...</p>';
+            }
+
+            content += `
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="btn-primary" onclick="startQuiz('${id}')">
+                        <i class="fas fa-play"></i> Почати тест
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('modal-body').innerHTML = content;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function openVocabTopic(id) {
+            const topic = vocabularyTopics.find(t => t.id === id);
+            if (!topic) return;
+
+            document.getElementById('modal-title').textContent = topic.title;
+            
+            let content = '';
+            if (topic.type === 'flashcards' && topic.words) {
+                currentFlashcardSet = topic.words;
+                currentFlashcard = 0;
+                content = `
+                    <div class="flashcard-container" onclick="flipCard()">
+                        <div class="flashcard" id="flashcard">
+                            <div class="flashcard-face flashcard-front">
+                                <div class="flashcard-word" id="card-word">${topic.words[0].word}</div>
+                                <div style="opacity: 0.6;">Натисніть, щоб перевернути</div>
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                <div class="flashcard-word" id="card-meaning">${topic.words[0].meaning}</div>
+                                <div style="margin-top: 1rem; font-style: italic;" id="card-example">${topic.words[0].example}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flashcard-controls">
+                        <button class="btn-secondary" onclick="prevCard(event)">
+                            <i class="fas fa-arrow-left"></i> Назад
+                        </button>
+                        <span id="card-counter">1 / ${topic.words.length}</span>
+                        <button class="btn-secondary" onclick="nextCard(event)">
+                            Далі <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+            } else if (topic.type === 'table' && topic.verbs) {
+                content = `
+                    <table class="verbs-table">
+                        <thead>
+                            <tr>
+                                <th>Base Form</th>
+                                <th>Past Simple</th>
+                                <th>Past Participle</th>
+                                <th>🔊</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${topic.verbs.map(v => `
+                                <tr>
+                                    <td>${v.base}</td>
+                                    <td>${v.past}</td>
+                                    <td>${v.participle}</td>
+                                    <td>
+                                        <button class="play-btn" onclick="speak('${v.base}')">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else {
+                content = topic.content || '<p>Вміст теми...</p>';
+            }
+
+            document.getElementById('modal-body').innerHTML = content;
+            document.getElementById('modal').classList.add('active');
+            markProgress(id, 100);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Flashcards
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function nextCard(e) {
+            e.stopPropagation();
+            if (currentFlashcard < currentFlashcardSet.length - 1) {
+                currentFlashcard++;
+                updateCard();
+            }
+        }
+
+        function prevCard(e) {
+            e.stopPropagation();
+            if (currentFlashcard > 0) {
+                currentFlashcard--;
+                updateCard();
+            }
+        }
+
+        function updateCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.remove('flipped');
+            setTimeout(() => {
+                document.getElementById('card-word').textContent = currentFlashcardSet[currentFlashcard].word;
+                document.getElementById('card-meaning').textContent = currentFlashcardSet[currentFlashcard].meaning;
+                document.getElementById('card-example').textContent = currentFlashcardSet[currentFlashcard].example;
+                document.getElementById('card-counter').textContent = `${currentFlashcard + 1} / ${currentFlashcardSet.length}`;
+            }, 200);
+        }
+
+        // Text to Speech
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Quiz System
+        function startQuiz(topicId) {
+            closeModal();
+            showSection('practice');
+            document.querySelectorAll('.nav-tab')[5].classList.add('active');
+            document.querySelectorAll('.nav-tab')[0].classList.remove('active');
+            
+            // Generate questions based on topic
+            const questions = generateQuestions(topicId);
+            currentQuiz = questions;
+            currentQuestion = 0;
+            score = 0;
+            
+            showQuestion();
+            startTimer(600, 'practice-timer'); // 10 minutes
+        }
+
+        function generateQuestions(topicId) {
+            // Sample questions for different topics
+            const questionBank = {
+                tenses: [
+                    { q: 'Choose the correct form: She ___ to school every day.', options: ['go', 'goes', 'going', 'gone'], correct: 1 },
+                    { q: 'I ___ TV when the phone rang.', options: ['watched', 'was watching', 'have watched', 'watch'], correct: 1 },
+                    { q: 'By next year, I ___ my degree.', options: ['will finish', 'will have finished', 'finish', 'am finishing'], correct: 1 }
+                ],
+                passive: [
+                    { q: 'The letter ___ yesterday.', options: ['was sent', 'sent', 'is sent', 'sends'], correct: 0 },
+                    { q: 'This book ___ by many people.', options: ['has been read', 'has read', 'is reading', 'read'], correct: 0 }
+                ],
+                conditionals: [
+                    { q: 'If I ___ rich, I would buy a car.', options: ['am', 'was', 'were', 'be'], correct: 2 },
+                    { q: 'If it rains, I ___ at home.', options: ['stay', 'will stay', 'would stay', 'stayed'], correct: 1 }
+                ],
+                default: [
+                    { q: 'Choose the correct answer:', options: ['A', 'B', 'C', 'D'], correct: 0 },
+                    { q: 'What is the correct form?', options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'], correct: 1 }
+                ]
+            };
+            
+            return questionBank[topicId] || questionBank.default;
+        }
+
+        function showQuestion() {
+            const container = document.getElementById('practice-content');
+            const q = currentQuiz[currentQuestion];
+            
+            container.innerHTML = `
+                <div class="question">
+                    <strong>Питання ${currentQuestion + 1} з ${currentQuiz.length}</strong><br><br>
+                    ${q.q}
+                </div>
+                <div class="options">
+                    ${q.options.map((opt, idx) => `
+                        <div class="option" onclick="checkAnswer(${idx})">
+                            <div class="option-letter">${String.fromCharCode(65 + idx)}</div>
+                            <div>${opt}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;">
+                        ${currentQuiz.map((_, i) => `
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: ${i === currentQuestion ? 'var(--primary)' : i < currentQuestion ? 'var(--success)' : 'rgba(255,255,255,0.2)'}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAnswer(selected) {
+            const q = currentQuiz[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            options[selected].classList.add(selected === q.correct ? 'correct' : 'wrong');
+            if (selected !== q.correct) {
+                options[q.correct].classList.add('correct');
+            } else {
+                score++;
+            }
+            
+            options.forEach(o => o.style.pointerEvents = 'none');
+            
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < currentQuiz.length) {
+                    showQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
+
+        function showResults() {
+            clearInterval(timer);
+            const percentage = Math.round((score / currentQuiz.length) * 100);
+            const container = document.getElementById('practice-content');
+            
+            if (percentage >= 80) {
+                createConfetti();
+            }
+            
+            container.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">
+                        ${percentage >= 80 ? '🎉' : percentage >= 60 ? '👍' : '💪'}
+                    </div>
+                    <h2 style="margin-bottom: 1rem;">Результати тесту</h2>
+                    <div style="font-size: 3rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;">
+                        ${score} / ${currentQuiz.length}
+                    </div>
+                    <div style="font-size: 1.5rem; margin-bottom: 2rem;">
+                        ${percentage}% - ${percentage >= 80 ? 'Відмінно!' : percentage >= 60 ? 'Добре!' : 'Потрібно ще попрацювати'}
+                    </div>
+                    <button class="btn-primary" onclick="location.reload()">
+                        <i class="fas fa-redo"></i> Спробувати ще
+                    </button>
+                </div>
+            `;
+            
+            updateStats('quiz-score', parseInt(document.getElementById('quiz-score').textContent) + 1);
+        }
+
+        // Reading Section
+        function renderReadingSection() {
+            const container = document.getElementById('reading-content');
+            const text = readingTexts[0];
+            
+            container.innerHTML = `
+                <div style="margin-bottom: 2rem; line-height: 1.8; font-size: 1.1rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary);">${text.title}</h3>
+                    ${text.text.split('\n\n').map(p => `<p style="margin-bottom: 1rem;">${p}</p>`).join('')}
+                </div>
+                <div id="reading-questions"></div>
+            `;
+            
+            renderReadingQuestions(0);
+            startTimer(1200, 'reading-timer'); // 20 minutes
+        }
+
+        function renderReadingQuestions(textIndex) {
+            const container = document.getElementById('reading-questions');
+            const questions = readingTexts[textIndex].questions;
+            
+            container.innerHTML = questions.map((q, idx) => `
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 1rem;">${idx + 1}. ${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIdx) => `
+                            <div class="option" onclick="checkReadingAnswer(this, ${optIdx}, ${q.correct})">
+                                <div class="option-letter">${String.fromCharCode(65 + optIdx)}</div>
+                                <div>${opt}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkReadingAnswer(element, selected, correct) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.option');
+            
+            element.classList.add(selected === correct ? 'correct' : 'wrong');
+            if (selected !== correct) {
+                options[correct].classList.add('correct');
+            }
+            
+            options.forEach(o => o.style.pointerEvents = 'none');
+        }
+
+        // Writing Section
+        function renderWritingSection() {
+            const container = document.getElementById('writing-content');
+            
+            container.innerHTML = writingTemplates.map(template => `
+                <div class="writing-template">
+                    <div class="template-header">
+                        <h3>${template.type}</h3>
+                        <span class="template-type">Шаблон</span>
+                    </div>
+                    <div class="template-structure">${template.structure.replace(/\n/g, '<br>')}</div>
+                    <div style="margin-top: 1rem;">
+                        <strong>Корисні фрази:</strong>
+                        <div class="phrase-list">
+                            ${template.phrases.map(p => `<div class="phrase-item">${p}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Timer
+        function startTimer(seconds, elementId) {
+            clearInterval(timer);
+            let remaining = seconds;
+            const display = document.getElementById(elementId);
+            
+            timer = setInterval(() => {
+                const mins = Math.floor(remaining / 60);
+                const secs = remaining % 60;
+                display.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                if (remaining <= 0) {
+                    clearInterval(timer);
+                    alert('Час вийшов!');
+                }
+                remaining--;
+            }, 1000);
+        }
+
+        // Progress
+        function markProgress(topicId, percent) {
+            progress[topicId] = Math.max(progress[topicId] || 0, percent);
+            localStorage.setItem('nmt_progress', JSON.stringify(progress));
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const topics = [...grammarTopics, ...vocabularyTopics];
+            const completed = Object.keys(progress).length;
+            const totalProgress = Object.values(progress).reduce((a, b) => a + b, 0) / topics.length;
+            
+            document.getElementById('total-progress').textContent = Math.round(totalProgress) + '%';
+            document.getElementById('completed-topics').textContent = completed;
+            document.getElementById('main-progress').style.width = totalProgress + '%';
+            
+            // Update individual bars
+            topics.forEach(topic => {
+                const bar = document.querySelector(`[onclick*="${topic.id}"] .topic-progress-bar`);
+                if (bar) bar.style.width = (progress[topic.id] || 0) + '%';
+            });
+        }
+
+        function resetProgress() {
+            if (confirm('Скинути весь прогрес?')) {
+                progress = {};
+                localStorage.removeItem('nmt_progress');
+                localStorage.removeItem('study_streak');
+                localStorage.removeItem('last_study_date');
+                updateProgress();
+                location.reload();
+            }
+        }
+
+        // Stats
+        function updateStats(id, value) {
+            document.getElementById(id).textContent = value;
+        }
+
+        function checkStreak() {
+            const lastDate = localStorage.getItem('last_study_date');
+            const today = new Date().toDateString();
+            let streak = parseInt(localStorage.getItem('study_streak') || '1');
+            
+            if (lastDate) {
+                const last = new Date(lastDate);
+                const diff = (new Date() - last) / (1000 * 60 * 60 * 24);
+                
+                if (diff >= 2) {
+                    streak = 1;
+                } else if (diff >= 1 && lastDate !== today) {
+                    streak++;
+                }
+            }
+            
+            localStorage.setItem('study_streak', streak);
+            localStorage.setItem('last_study_date', today);
+            document.getElementById('study-streak').textContent = streak;
+        }
+
+        // Confetti
+        function createConfetti() {
+            const colors = ['#6366f1', '#8b5cf6', '#f59e0b', '#10b981', '#ef4444'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti
